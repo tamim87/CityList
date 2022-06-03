@@ -49,4 +49,66 @@ public class CityListTest {
         assertEquals(0, city.compareTo(cityList.getCities().get(0)));
         assertEquals(0, mockCity().compareTo(cityList.getCities().get(1)));
     }
+
+
+    /**
+     * test for delete function
+     */
+
+    @Test
+    public void deleteTest()
+    {
+        CityList li=new CityList();
+        City cityname =new City("Dhaka","Khilgaon");
+        li.add(cityname);
+        li.delete(cityname);
+        assertEquals(false,li.getCities().contains(cityname));
+    }
+
+
+    /**
+     * test for throw exception
+     */
+
+    @Test
+    public void DeleteExceptionTest()
+    {
+        CityList li = new CityList();
+        City cityname = new City("Dhaka","Khilgaon");
+        assertThrows(IllegalArgumentException.class,() -> {
+            li.delete(cityname);
+        });
+    }
+
+
+    /**
+     * test for count function
+     */
+
+    @Test
+    public void CountTest()
+    {
+        CityList li = new CityList();
+        City cityname = new City("Dhaka","Khilgaon");
+        li.add(cityname);
+        assertEquals(1,li.count());
+    }
+
+
+    /**
+     * test for sort function
+     */
+
+    @Test
+    public void SortTest()
+    {
+        CityList li = new CityList();
+        City cityname1 = new City("Dhaka","Khilgaon");
+        li.add(cityname1);
+
+        City cityname2 =new City("Khulna","Mongla");
+        li.add(cityname2);
+
+        assertEquals(cityname1, li.getCities(false).get(0));
+    }
 }
